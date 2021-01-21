@@ -1,15 +1,28 @@
 import React, {useRef} from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { useFrame } from 'react-three-fiber'
+import RobotoFont from '../fonts/Roboto_Medium_Regular.json'
 
-const Rect = () => {
+const font = new THREE.FontLoader().parse(RobotoFont)
+
+const textOptions = {
+    font,
+    size: 0.1,
+    height: 0.02
+  };
+
+const Rect = ({ rotate }) => {
     const rotor = useRef()
     const sineMeter = useRef()
     const cosMeter = useRef()
 
+
     useFrame(() => {
+        // console.log(rotate)
         if(rotor && rotor.current) {
-            rotor.current.rotation.z += 0.03
+            // rotor.current.rotation.z += 0.03
+            rotor.current.rotation.z = rotate
+
         }
         sineMeter.current.scale.y = Math.sin(rotor.current.rotation.z)
         sineMeter.current.position.y = Math.sin(rotor.current.rotation.z) / 2
@@ -41,6 +54,14 @@ const Rect = () => {
         <mesh ref={cosMeter} position={[0,-1.3,0]} >
             <boxBufferGeometry attach="geometry" args={[1,0.1,0.1]}/>
             <meshStandardMaterial attach="material" color="red"/>
+        </mesh>
+        <mesh position={[1.4,0,0]}>
+            <textGeometry attach='geometry' args={[rotor && rotor.current ? Math.sin(rotor.current.rotation.z).toFixed(3) : "err", textOptions]} />
+            <meshStandardMaterial attach='material' />
+        </mesh>
+        <mesh position={[0,-1.5,0]}>
+            <textGeometry attach='geometry' args={[rotor && rotor.current ? Math.cos(rotor.current.rotation.z).toFixed(3) : "err", textOptions]} />
+            <meshStandardMaterial attach='material' />
         </mesh>
     </>
     )

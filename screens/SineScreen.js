@@ -6,24 +6,29 @@ import Plane from '../components/Plane'
 import Rect from '../components/Rect';
 
 const SineScreen = () => {
-  const [boxPosition, setBoxPosition] = useState(1.2);
+  const [rotate, setRotation] = useState(0);
 
+  const moveRotor = (moveDeg) => {
+    setRotation(
+      rotate + THREE.MathUtils.degToRad(moveDeg)
+    )
+  }
   return (
     <View style={styles.container}>
       <Canvas /*camera={{ position: [2, 2, 2] }}*/>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         {/* <fog attach="fog" args={["#041830", 5, 10]} /> */}
-        {/* <gridHelper /> */}
+        <gridHelper position={[0,-1.4,0]}/>
         {/* <Plane /> */}
         {/* <Box position={[-1.2, 0, 0]} />
         <Box position={[boxPosition, 0, 0]} /> */}
-        <Rect />
+        <Rect rotate={rotate} />
       </Canvas>
       <View style={styles.controllerContainer}>
         <View style={styles.buttonHolder}>
-          <Button title="Up" onPress={() => setBoxPosition(boxPosition + 0.1)} />
-          <Button title="Down" onPress={() => setBoxPosition(boxPosition - 0.1)} />
+          <Button title="Up" onPress={() => moveRotor(5)} />
+          <Button title="Down" onPress={() => moveRotor(-5)} />
         </View>
       </View>
     </View>
