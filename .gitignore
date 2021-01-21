@@ -61,3 +61,6 @@ buck-out/
 # Expo
 .expo/*
 web-build/
+
+# todo file
+todo.txt

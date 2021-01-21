@@ -1,56 +1,33 @@
-import React, { useRef, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Canvas, useFrame } from 'react-three-fiber';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+// import { StyleSheet, View, Text, Button } from 'react-native';
+import ContentScreen from './screens/ContentScreen';
+import LoginScreen from './screens/LoginScreen'
+import ContentOverviewScreen from './screens/ContentOverviewScreen';
+import SineScreen from './screens/SineScreen';
+// import NewScreen from './screens/NewScreen';
 
-function Box(props) {
-  // This reference will give us direct access to the mesh
-  const mesh = useRef();
+const Stack = createStackNavigator()
 
-  // Set up state for the hovered and active state
-  const [hovered, setHover] = useState(false);
-  const [active, setActive] = useState(false);
-
-  // Rotate mesh every frame, this is outside of React without overhead
-  useFrame(() => {
-    if (mesh && mesh.current) {
-      mesh.current.rotation.x = mesh.current.rotation.y += 0.01;
-    }
-  });
-
+function App() {
+  console.log("App running.")
   return (
-    <mesh
-      {...props}
-      ref={mesh}
-      scale={active ? [1.5, 1.5, 1.5] : [1, 1, 1]}
-      onClick={(e) => setActive(!active)}
-      onPointerOver={(e) => setHover(true)}
-      onPointerOut={(e) => setHover(false)}
-    >
-      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-      <meshStandardMaterial
-        attach="material"
-        color={hovered ? "hotpink" : "orange"}
-      />
-    </mesh>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Content" component={ContentScreen} />
+          <Stack.Screen name="Overview" component={ContentOverviewScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Sine" component={SineScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Canvas>
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        <Box position={[-1.2, 0, 0]} />
-        <Box position={[1.2, 0, 0]} />
-      </Canvas>
-    </View>
-  );
-}
+export default App
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "black",
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//   },
+// });
