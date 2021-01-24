@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Button } from 'react-native';
+import { StyleSheet, View, Button, Text } from 'react-native';
 import { Canvas } from 'react-three-fiber';
 import Plane from '../components/Plane'
 // import Box from '../components/Box'
 import Rect from '../components/Rect';
+import challengeLvl1 from '../challengeData/challengeData'
 
 const SineScreen = () => {
   const [rotate, setRotation] = useState(0);
@@ -13,6 +14,11 @@ const SineScreen = () => {
       rotate + THREE.MathUtils.degToRad(moveDeg)
     )
   }
+
+  const checkAnswer = () => {
+    console.log("Checking answer ", THREE.MathUtils.radToDeg(rotate).toFixed(3))
+  }
+
   return (
     <View style={styles.container}>
       <Canvas /*camera={{ position: [2, 2, 2] }}*/>
@@ -28,7 +34,9 @@ const SineScreen = () => {
       <View style={styles.controllerContainer}>
         <View style={styles.buttonHolder}>
           <Button title="Up" onPress={() => moveRotor(5)} />
+          <Text>{THREE.MathUtils.radToDeg(rotate).toFixed(3)}</Text>
           <Button title="Down" onPress={() => moveRotor(-5)} />
+          <Button title="Enter" onPress={() => checkAnswer()}/>
         </View>
       </View>
     </View>
