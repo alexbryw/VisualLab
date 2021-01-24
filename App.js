@@ -14,10 +14,10 @@ function App() {
   console.log("App running.")
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Welcome">
           <Stack.Screen name="Content" component={ContentScreen} />
           <Stack.Screen name="Overview" component={ContentOverviewScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Welcome" component={LoginScreen} />
           <Stack.Screen name="Sine" component={SineScreen} />
         </Stack.Navigator>
       </NavigationContainer>

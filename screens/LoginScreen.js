@@ -4,7 +4,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 const LoginScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Text>Login Screen.</Text>
+            <Text>Welcome to Visual Lab.</Text>
             <Pressable style={styles.nextButton}>
                 <Text onPress={() => navigation.navigate('Overview')}>Next</Text>
             </Pressable>
