@@ -11,10 +11,11 @@ const textOptions = {
     height: 0.02
   };
 
-const UnitCircle= ({ rotate = 0 }) => {
+const UnitCircle= ({ rotate = 0, showDegNr = true , idleAnimation = true}) => {
     // const rotor = useRef()
     // const sineMeter = useRef()
     // const cosMeter = useRef()
+    const unitCircle = useRef()
 
 
     useFrame(() => {
@@ -29,18 +30,29 @@ const UnitCircle= ({ rotate = 0 }) => {
 
         // cosMeter.current.scale.x = Math.cos(rotor.current.rotation.z)
         // cosMeter.current.position.x = Math.cos(rotor.current.rotation.z) / 2
+
+        if(unitCircle && unitCircle.current && idleAnimation) {
+            if(unitCircle.current.rotation.y < 1) {
+                unitCircle.current.rotation.y += 0.002
+            }
+        } else {
+            unitCircle.current.rotation.y = 0
+        }
         
     })
 
     return (
         <>
+        <group ref={unitCircle}>
+            {/* {console.log("Anim ", idleAnimation)} */}
             /*center offset rotor. */
             <group /*ref={rotor}*/ rotation={[0,0,rotate]}>
                 <mesh position={[0.5,0,0]} >
-                    <boxBufferGeometry attach="geometry" args={[1,0.1,1]}/>
+                    <boxBufferGeometry attach="geometry" args={[1,0.1,0.1]}/>
                     <meshStandardMaterial attach="material" color="orange"/>
                 </mesh>
             </group>
+
             <mesh>
                 <ringBufferGeometry attach="geometry" args={[1.1, 1.2, 32, 32]} />
                 <meshStandardMaterial attach="material" color="orange"/>
@@ -76,11 +88,6 @@ const UnitCircle= ({ rotate = 0 }) => {
                 <meshStandardMaterial attach="material" color="green"/>
             </mesh>
 
-            /*Marker 0deg 3D number. */
-            <mesh position={[1.22,0,0]}>
-                <textGeometry attach='geometry' args={["0°", textOptions]} />
-                <meshStandardMaterial attach='material' />
-            </mesh>
 
             /*Marker 90deg */
             <mesh position={[0,1.1,0]} >
@@ -88,16 +95,60 @@ const UnitCircle= ({ rotate = 0 }) => {
                 <meshStandardMaterial attach="material" color="green"/>
             </mesh>
             
-            /*Marker 90deg 3D number. */
-            <mesh position={[0,1.22,0]}>
-                <textGeometry attach='geometry' args={["90°", textOptions]} />
-                <meshStandardMaterial attach='material' />
-            </mesh>
 
             /*Marker 180deg */
             <mesh position={[-1.1,0,0]} >
                 <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
                 <meshStandardMaterial attach="material" color="green"/>
+            </mesh>
+
+
+            /*Marker 270deg */
+            <mesh position={[0,-1.1,0]} >
+                <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
+                <meshStandardMaterial attach="material" color="green"/>
+            </mesh>
+
+
+            /*Marker 45deg */
+            <mesh position={[0.78,0.78,0]} rotation={[0,0,THREE.MathUtils.degToRad(45)]}>
+                <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
+                <meshStandardMaterial attach="material" color="green"/>
+            </mesh>
+
+            
+            /*Marker 135deg */
+            <mesh position={[-0.78,0.78,0]} rotation={[0,0,THREE.MathUtils.degToRad(45)]}>
+                <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
+                <meshStandardMaterial attach="material" color="green"/>
+            </mesh>
+
+
+            /*Marker 225deg */
+            <mesh position={[-0.78,-0.78,0]} rotation={[0,0,THREE.MathUtils.degToRad(45)]}>
+                <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
+                <meshStandardMaterial attach="material" color="green"/>
+            </mesh>
+
+
+            /*Marker 315deg */
+            <mesh position={[0.78,-0.78,0]} rotation={[0,0,THREE.MathUtils.degToRad(45)]}>
+                <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
+                <meshStandardMaterial attach="material" color="green"/>
+            </mesh>
+
+
+            {showDegNr && <>
+            /*Marker 0deg 3D number. */
+            <mesh position={[1.22,0,0]}>
+                <textGeometry attach='geometry' args={["0°", textOptions]} />
+                <meshStandardMaterial attach='material'/>
+            </mesh>
+
+            /*Marker 90deg 3D number. */
+            <mesh position={[0,1.22,0]}>
+                <textGeometry attach='geometry' args={["90°", textOptions]} />
+                <meshStandardMaterial attach='material' />
             </mesh>
 
             /*Marker 180deg 3D number. */
@@ -106,34 +157,16 @@ const UnitCircle= ({ rotate = 0 }) => {
                 <meshStandardMaterial attach='material' />
             </mesh>
 
-            /*Marker 270deg */
-            <mesh position={[0,-1.1,0]} >
-                <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
-                <meshStandardMaterial attach="material" color="green"/>
-            </mesh>
-
             /*Marker 270deg 3D number. */
             <mesh position={[0,-1.3,0.2]}>
                 <textGeometry attach='geometry' args={["270°", textOptions]} />
                 <meshStandardMaterial attach='material' />
             </mesh>
 
-            /*Marker 45deg */
-            <mesh position={[0.78,0.78,0]} rotation={[0,0,THREE.MathUtils.degToRad(45)]}>
-                <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
-                <meshStandardMaterial attach="material" color="green"/>
-            </mesh>
-
             /*Marker 45deg 3D number. */
             <mesh position={[0.9,0.9,0]}>
                 <textGeometry attach='geometry' args={["45°", textOptions]} />
                 <meshStandardMaterial attach='material' />
-            </mesh>
-            
-            /*Marker 135deg */
-            <mesh position={[-0.78,0.78,0]} rotation={[0,0,THREE.MathUtils.degToRad(45)]}>
-                <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
-                <meshStandardMaterial attach="material" color="green"/>
             </mesh>
 
             /*Marker 135deg 3D number. */
@@ -142,23 +175,10 @@ const UnitCircle= ({ rotate = 0 }) => {
                 <meshStandardMaterial attach='material' />
             </mesh>
 
-            /*Marker 225deg */
-            <mesh position={[-0.78,-0.78,0]} rotation={[0,0,THREE.MathUtils.degToRad(45)]}>
-                <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
-                <meshStandardMaterial attach="material" color="green"/>
-            </mesh>
-
             /*Marker 225deg 3D number. */
             <mesh position={[-1.1,-1.1,0]}>
                 <textGeometry attach='geometry' args={["225°", textOptions]} />
                 <meshStandardMaterial attach='material' />
-            </mesh>
-
-            
-            /*Marker 315deg */
-            <mesh position={[0.78,-0.78,0]} rotation={[0,0,THREE.MathUtils.degToRad(45)]}>
-                <boxBufferGeometry attach="geometry" args={[0.1,0.1,0.1]}/>
-                <meshStandardMaterial attach="material" color="green"/>
             </mesh>
 
             /*Marker 315deg 3D number. */
@@ -166,6 +186,8 @@ const UnitCircle= ({ rotate = 0 }) => {
                 <textGeometry attach='geometry' args={["315°", textOptions]} />
                 <meshStandardMaterial attach='material' />
             </mesh>
+            </>}
+        </group>
         </>
     )
 }
