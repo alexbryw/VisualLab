@@ -3,8 +3,8 @@ import { StyleSheet, View, Button, Text } from 'react-native';
 import { Canvas } from 'react-three-fiber';
 import Plane from '../components/Plane'
 // import Box from '../components/Box'
-import Rect from '../components/Rect';
-import challengeLvl1 from '../challengeData/challengeData'
+import UnitCircle from '../components/UnitCircle';
+import { challengeLvl1 } from '../challengeData/challengeData'
 
 const SineScreen = () => {
   const [rotate, setRotation] = useState(0);
@@ -17,6 +17,14 @@ const SineScreen = () => {
 
   const checkAnswer = () => {
     console.log("Checking answer ", THREE.MathUtils.radToDeg(rotate).toFixed(3))
+    console.log(parseInt(THREE.MathUtils.radToDeg(rotate)))
+    console.log(challengeLvl1[0].answer)
+    // console.log(challengeLvl1)
+    if(parseInt(THREE.MathUtils.radToDeg(rotate).toFixed(0)) === challengeLvl1[0].answer) {
+      console.log("Correct! You Win!")
+    } else {
+      console.log("Wrong! You Loose!")
+    }
   }
 
   return (
@@ -29,12 +37,12 @@ const SineScreen = () => {
         {/* <Plane /> */}
         {/* <Box position={[-1.2, 0, 0]} />
         <Box position={[boxPosition, 0, 0]} /> */}
-        <Rect rotate={rotate} />
+        <UnitCircle rotate={rotate} />
       </Canvas>
       <View style={styles.controllerContainer}>
         <View style={styles.buttonHolder}>
           <Button title="Up" onPress={() => moveRotor(5)} />
-          <Text>{THREE.MathUtils.radToDeg(rotate).toFixed(3)}</Text>
+          <Text>{parseInt(THREE.MathUtils.radToDeg(rotate).toFixed(0))}</Text>
           <Button title="Down" onPress={() => moveRotor(-5)} />
           <Button title="Enter" onPress={() => checkAnswer()}/>
         </View>
