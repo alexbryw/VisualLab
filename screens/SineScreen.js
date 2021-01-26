@@ -42,7 +42,7 @@ const SineScreen = () => {
       <View style={styles.controllerContainer}>
         <View style={styles.buttonHolder}>
           <Button title="Up" onPress={() => moveRotor(5)} />
-          <Text>{parseInt(THREE.MathUtils.radToDeg(rotate).toFixed(0))}</Text>
+          <Text>{parseInt(THREE.MathUtils.radToDeg(rotate).toFixed(0))}°</Text>
           <Button title="Down" onPress={() => moveRotor(-5)} />
           <Button title="Enter" onPress={() => checkAnswer()}/>
         </View>
