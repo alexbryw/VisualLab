@@ -9,4 +9,9 @@ export const challengeLvl1 = [
         answer: 90,
         type: "deg"
     },
+    {
+        question: "Find 135 degrees.",
+        answer: 135,
+        type: "deg"
+    },
 ]
