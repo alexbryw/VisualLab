@@ -164,11 +164,12 @@ const styles = StyleSheet.create({
     width: "100%",
     // height: "100%",
     // backgroundColor: "green",
-    bottom: 0
+    bottom: 38,
+    paddingHorizontal: 32,
   },
   questionHolder: {
     position: "absolute",
-    marginTop: 42,
+    marginTop: 72,
     // top: 0,
     width: "100%",
     alignItems: "center",
