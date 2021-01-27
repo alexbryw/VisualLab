@@ -14,7 +14,10 @@ function App() {
   console.log("App running.")
   return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Welcome">
+        <Stack.Navigator 
+          initialRouteName="Welcome"
+          screenOptions={{headerTransparent: true}}
+        >
           <Stack.Screen name="Content" component={ContentScreen} />
           <Stack.Screen name="Overview" component={ContentOverviewScreen} />
           <Stack.Screen name="Welcome" component={LoginScreen} />
