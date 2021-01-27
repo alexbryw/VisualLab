@@ -117,12 +117,9 @@ const SineScreen = () => {
       {gameWon &&
         <View style={styles.gameWon}>
           <Text>{wins}</Text>
-          <FontAwesome name="star" size={24} color="black" />
-          {/* {for (let index = 0; index < wins; index++) {
-            // const element = array[index];
-            <FontAwesome name="star" size={24} color="black" />
-            
-          }} */}
+          {Array.from(Array(wins)).map((el, i) =>
+              <FontAwesome key={i} name="star" size={24} color="black" />
+          )}
           <Text style={styles.questionText}>
             Game Over.
           </Text>
