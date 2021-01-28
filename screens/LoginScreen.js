@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         justifyContent: "flex-start",
-        paddingTop: 112,
+        paddingTop: 132,
     },
     background: {
         position: "absolute",
@@ -50,13 +50,15 @@ const styles = StyleSheet.create({
 
     },
     textHolder: {
-        marginTop: 64,
+        marginTop: 180,
         backgroundColor: 'rgba(255,255,255,0.1)',
         borderRadius: 20,
         padding: 20,
     },
     text: {
         color: "white",
+        fontSize: 14,
+        letterSpacing: 1.1,
     },
     nextButton: {
         backgroundColor: "white",
@@ -71,6 +73,7 @@ const styles = StyleSheet.create({
     buttonText: {
         fontSize: 18,
         letterSpacing: 1,
+        fontWeight: "bold"
     },
     imgBackground: {
         flex: 1,
