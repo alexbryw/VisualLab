@@ -1,6 +1,6 @@
 # Visual Lab   
 ## Interactive learning in a 3D environment.   
-### Made whit React-Native EXPO for mobiles and uses THREE.JS (React-three-Fiber) for the 3D elements.   
+### Made with React-Native EXPO for mobiles and uses THREE.JS (React-three-Fiber) for the 3D elements.   
    
 ### Installation.   
 1. "npm install -g expo-cli"   
