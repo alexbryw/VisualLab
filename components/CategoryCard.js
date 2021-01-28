@@ -1,30 +1,27 @@
 import React from 'react'
-import { StyleSheet, Text, View, Pressable, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 
-const CategoryCard = ({ navigation, navTo='Welcome', imgFile }) => {
-    console.log(imgFile)
-
-    // const getImg = () => {
-    //     if (!imgFile) {
-    //         return require("../media/coming-soon.jpg")
-    //     } else {
-    //         return require(imgFile)
-    //     }
-    // }
+const CategoryCard = ({ navigation, navTo, imgFile, textTitle, cardText }) => {
     return (
         <View style={styles.container}>
-            {/* <View style={styles.placeholderBox}>
-                <Text>Waves. Image coming soon.</Text>
-            </View> */}
-            <Text>Learn about the Unit Circle.</Text>
-            {
+            <TouchableOpacity onPress={navTo ? () => navigation.navigate(navTo) : null}>
+            {   
                 imgFile ? <Image style={styles.img} source={imgFile} />
                 :
                 <Image style={styles.img} source={require("../media/coming-soon.jpg")} />
             }
-            <Pressable style={styles.nextButton}>
-                <Text onPress={() => navigation.navigate(navTo)}>{navTo}</Text>
-            </Pressable>
+            <View style={styles.textHolder}>
+                { cardText ?
+                <Text style={styles.textBody}>
+                    {textTitle &&<Text style={styles.titleText}>{textTitle}: </Text>}{cardText}
+                </Text>
+                :
+                <Text>
+                Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum.
+                </Text>
+                }
+            </View>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -33,11 +30,32 @@ export default CategoryCard
 
 const styles = StyleSheet.create({
     container: {
+        marginTop: 38,
         alignItems: 'center',
     },
     img:{
         width: 300,
         height: 230,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
+    },
+    titleText: {
+        fontSize: 24,
+        // color: '#00C4EE',
+        color: '#000A68',
+    },
+    textBody: {
+        color: '#00C4EE',
+        letterSpacing: 1.1,
+    },
+    textHolder: {
+        width: 300,
+        paddingHorizontal: 8,
+        backgroundColor: "#f8f8f8",
+        paddingTop: 8,
+        paddingBottom: 12,
+        borderBottomLeftRadius: 16,
+        borderBottomRightRadius: 16,
     },
     nextButton: {
         backgroundColor: "grey",
@@ -47,11 +65,5 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         margin: 20,
-    },
-    placeholderBox: {
-        marginTop: 112,
-        width: 320,
-        height: 280,
-        backgroundColor: "grey",
     },
 })
