@@ -16,10 +16,11 @@ const LoginScreen = ({ navigation }) => {
                 <Image style={styles.logo} source={require('../media/logo.png')}/>
                 <Image source={require('../media/logo-text.png')}/>
                 <View style={styles.textHolder}>
-                    <Text style={styles.text}>Interactive learning in a 3D environment.</Text>
+                    <Text style={styles.text}>Interactive learning</Text>
+                    <Text style={styles.text}>in a 3D environment.</Text>
                 </View>
-                <Pressable style={styles.nextButton}>
-                    <Text style={styles.buttonText} onPress={() => navigation.navigate('Overview')}>Let's Go!</Text>
+                <Pressable style={styles.nextButton} onPress={() => navigation.navigate('Overview')}>
+                    <Text style={styles.buttonText}>Let's Go!</Text>
                 </Pressable>
         </View>
     )
@@ -57,8 +58,9 @@ const styles = StyleSheet.create({
     },
     text: {
         color: "white",
-        fontSize: 14,
-        letterSpacing: 1.1,
+        fontSize: 18,
+        letterSpacing: 1.4,
+        fontWeight: "700",
     },
     nextButton: {
         backgroundColor: "white",
@@ -69,11 +71,20 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         margin: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5
     },
     buttonText: {
-        fontSize: 18,
-        letterSpacing: 1,
-        fontWeight: "bold"
+        fontSize: 20,
+        letterSpacing: 1.2,
+        fontWeight: "bold",
+        color: '#00C4EE',
     },
     imgBackground: {
         flex: 1,
