@@ -11,6 +11,8 @@ const textOptions = {
     height: 0.02
   };
 
+  const text3dColor = "black"
+
 const UnitCircle= ({ rotate = 0, showDegNr = true , idleAnimation = true}) => {
     // const rotor = useRef()
     // const sineMeter = useRef()
@@ -73,13 +75,13 @@ const UnitCircle= ({ rotate = 0, showDegNr = true , idleAnimation = true}) => {
             /*Sine  3D number. */
             <mesh position={[1.5,0.2,0]}>
             <textGeometry attach='geometry' args={[" sin \n" + Math.sin(rotate).toFixed(3), textOptions]} />
-                <meshStandardMaterial attach='material' />
+                <meshStandardMaterial attach='material' color={text3dColor} />
             </mesh>
 
             /*cos  3D number. */
             <mesh position={[0,-1.65,0]}>
                 <textGeometry attach='geometry' args={["cos " + Math.cos(rotate).toFixed(3), textOptions]} />
-                <meshStandardMaterial attach='material' />
+                <meshStandardMaterial attach='material' color={text3dColor} />
             </mesh>
 
             /*Marker 0deg */
@@ -142,49 +144,49 @@ const UnitCircle= ({ rotate = 0, showDegNr = true , idleAnimation = true}) => {
             /*Marker 0deg 3D number. */
             <mesh position={[1.22,0,0]}>
                 <textGeometry attach='geometry' args={["0°", textOptions]} />
-                <meshStandardMaterial attach='material'/>
+                <meshStandardMaterial attach='material' color={text3dColor} />
             </mesh>
 
             /*Marker 90deg 3D number. */
             <mesh position={[0,1.22,0]}>
                 <textGeometry attach='geometry' args={["90°", textOptions]} />
-                <meshStandardMaterial attach='material' />
+                <meshStandardMaterial attach='material' color={text3dColor} />
             </mesh>
 
             /*Marker 180deg 3D number. */
             <mesh position={[-1.5,0,0]}>
                 <textGeometry attach='geometry' args={["180°", textOptions]} />
-                <meshStandardMaterial attach='material' />
+                <meshStandardMaterial attach='material' color={text3dColor} />
             </mesh>
 
             /*Marker 270deg 3D number. */
             <mesh position={[0,-1.3,0.2]}>
                 <textGeometry attach='geometry' args={["270°", textOptions]} />
-                <meshStandardMaterial attach='material' />
+                <meshStandardMaterial attach='material' color={text3dColor} />
             </mesh>
 
             /*Marker 45deg 3D number. */
             <mesh position={[0.9,0.9,0]}>
                 <textGeometry attach='geometry' args={["45°", textOptions]} />
-                <meshStandardMaterial attach='material' />
+                <meshStandardMaterial attach='material' color={text3dColor} />
             </mesh>
 
             /*Marker 135deg 3D number. */
             <mesh position={[-1,1,0]}>
                 <textGeometry attach='geometry' args={["135°", textOptions]} />
-                <meshStandardMaterial attach='material' />
+                <meshStandardMaterial attach='material' color={text3dColor} />
             </mesh>
 
             /*Marker 225deg 3D number. */
             <mesh position={[-1.1,-1.1,0]}>
                 <textGeometry attach='geometry' args={["225°", textOptions]} />
-                <meshStandardMaterial attach='material' />
+                <meshStandardMaterial attach='material' color={text3dColor} />
             </mesh>
 
             /*Marker 315deg 3D number. */
             <mesh position={[1,-1,0]}>
                 <textGeometry attach='geometry' args={["315°", textOptions]} />
-                <meshStandardMaterial attach='material' />
+                <meshStandardMaterial attach='material' color={text3dColor} />
             </mesh>
             </>}
         </group>
