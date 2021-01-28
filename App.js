@@ -4,8 +4,9 @@ import React from 'react';
 // import { StyleSheet, View, Text, Button } from 'react-native';
 import ContentScreen from './screens/ContentScreen';
 import LoginScreen from './screens/LoginScreen'
-import ContentOverviewScreen from './screens/ContentOverviewScreen';
+import OverviewScreen from './screens/OverviewScreen';
 import SineScreen from './screens/SineScreen';
+import WaveScreen from './screens/WaveScreen';
 // import NewScreen from './screens/NewScreen';
 
 const Stack = createStackNavigator()
@@ -19,9 +20,11 @@ function App() {
           screenOptions={{headerTransparent: true}}
         >
           <Stack.Screen name="Content" component={ContentScreen} />
-          <Stack.Screen name="Overview" component={ContentOverviewScreen} />
+          <Stack.Screen name="Overview" component={OverviewScreen} />
           <Stack.Screen name="Welcome" component={LoginScreen} />
           <Stack.Screen name="Sine" component={SineScreen} />
+          <Stack.Screen name="Wave" component={WaveScreen} />
+
         </Stack.Navigator>
       </NavigationContainer>
   );
