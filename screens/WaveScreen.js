@@ -1,22 +1,26 @@
 import React from 'react'
 import { StyleSheet, Text, View, Pressable, ScrollView, SafeAreaView} from 'react-native'
-import { LinearGradient } from 'expo-linear-gradient';
+import CategoryCard from '../components/CategoryCard'
+const sin = require('../media/sin.png')
 
 const WaveScreen = ({ navigation }) => {
+    const OverviewText = [
+        {
+            title: "Unit Circle",
+            text: "Learn about degrees, sine, cosine with a 3D unit circle."
+         }
+    ]
     return (
         <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollView}>
-            <View style={styles.placeholderBox}>
-                <Text>Unit Circle - degrees. Image coming soon.</Text>
-            </View>
-            <Text>Learn about the Unit Circle.</Text>
-            <Pressable style={styles.nextButton}>
-                <Text onPress={() => navigation.navigate('Sine')}>Start</Text>
-            </Pressable>
-
-            <View style={styles.placeholderBox}>
-                <Text>Wave Interference. Image coming soon.</Text>
-            </View>
+            <CategoryCard
+                navigation={navigation}
+                navTo={"Sine"} imgFile={sin}
+                textTitle={OverviewText[0].title}
+                cardText={OverviewText[0].text}
+            />
+            {/* <CategoryCard navigation={navigation} />
+            <CategoryCard navigation={navigation} /> */}
         </ScrollView>
         </SafeAreaView>
     )
@@ -27,11 +31,13 @@ export default WaveScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "white",
         // alignItems: "center",
         // justifyContent: "flex-start",
         // backgroundColor: "white"
     },
     scrollView: {
+        paddingTop: 48,
         alignItems: "center",
         justifyContent: "flex-start",
         backgroundColor: "white",
