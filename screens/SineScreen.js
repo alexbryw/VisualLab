@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Button, Text, Modal, TouchableHighlight } from 'react-native';
 import { Canvas } from 'react-three-fiber';
-import Plane from '../components/Plane'
-// import Box from '../components/Box'
+// import Plane from '../components/Plane'
 import UnitCircle from '../components/UnitCircle';
 import { challengeLvl1 } from '../challengeData/challengeData'
 import { Feather, FontAwesome } from '@expo/vector-icons'; 
@@ -25,11 +24,11 @@ const SineScreen = () => {
 
   const checkAnswer = () => {
     if(parseInt(THREE.MathUtils.radToDeg(rotate).toFixed(0)) === challengeLvl1[currentQuestionPos].answer) {
-      console.log("Correct! You Win!")
+      // console.log("Correct! You Win!")
       setWins(wins + 1)
       nextQuestion()
     } else {
-      console.log("Wrong! You Loose!")
+      // console.log("Wrong! You Loose!")
       nextQuestion()
     }
   }
@@ -67,18 +66,18 @@ const SineScreen = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Rotate whit the buttons below.</Text>
-            <Text style={styles.modalText}>When you found the correct angle press enter.</Text>
+            <Text style={styles.modalText}>Change angle with the buttons below to the side.</Text>
+            <Text style={styles.modalText}>When you found the correct angle press the ENTER button.</Text>
 
             <TouchableHighlight
-              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+              style={styles.button}
               onPress={() => {
                 setModalVisible(!modalVisible);
                 setShowStart(true)
                 // startChallenge()
               }}
             >
-              <Text style={styles.textStyle}>Got it!</Text>
+              <Text style={styles.modalButtonText}>Got it!</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -94,21 +93,22 @@ const SineScreen = () => {
         <UnitCircle rotate={rotate} showDegNr={showDegNr} idleAnimation={showStart || gameWon}/>
       </Canvas>
       {showStart &&
-        <View style={styles.gameWon}>
-          {/* <Text>{wins}</Text> */}
-          {/* <Text style={styles.questionText}>
-            Game Over.
-          </Text> */}
+        <View style={styles.showStart}>
           <TouchableHighlight
-            style={styles.openButton}
+            style={styles.button}
             onPress={() => startChallenge()}>
-            <Text>START</Text>
+            <Text style={styles.showStartButtonText}>START</Text>
           </TouchableHighlight>
         </View>
       }
       {questionVisible &&
         <View style={styles.questionHolder}>
-          <Text>{wins}</Text>
+          {/* <Text>{wins}</Text> */}
+          <View style={styles.pointStarHolder}>
+            {Array.from(Array(wins)).map((el, i) =>
+                <FontAwesome key={i} name="star" size={24} color="black" />
+            )}
+          </View>
           <Text style={styles.questionText}>
             {(currentQuestionPos + 1).toString() + ": " + challengeLvl1[currentQuestionPos].question}
           </Text>
@@ -116,20 +116,21 @@ const SineScreen = () => {
       }
       {gameWon &&
         <View style={styles.gameWon}>
-          <Text>{wins}</Text>
-          {Array.from(Array(wins)).map((el, i) =>
-              <FontAwesome key={i} name="star" size={24} color="black" />
-          )}
+          <View style={styles.pointStarHolder}>
+            {Array.from(Array(wins)).map((el, i) =>
+                <FontAwesome key={i} name="star" size={24} color="black" />
+            )}
+          </View>
           <Text style={styles.questionText}>
-            Game Over.
+            {wins + " points."}
           </Text>
           <TouchableHighlight
-            style={styles.openButton}
+            style={styles.button}
             onPress={() => {
               setGameWon(false)
               setShowStart(true)
             }}>
-            <Text>OK</Text>
+            <Text style={styles.modalButtonText}>OK</Text>
           </TouchableHighlight>
         </View>
       }
@@ -154,7 +155,7 @@ const SineScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'grey',
+    backgroundColor: 'white',
   },
   controllerContainer: {
     flex: 1,
@@ -167,19 +168,47 @@ const styles = StyleSheet.create({
     bottom: 38,
     paddingHorizontal: 32,
   },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    backgroundColor: '#00C4EE',
+  },
   questionHolder: {
     position: "absolute",
     marginTop: 72,
     // top: 0,
     width: "100%",
     alignItems: "center",
-    justifyContent: "center"
-
+    justifyContent: "center",
+    
   },
   questionText: {
-    backgroundColor: "white",
+    backgroundColor: '#f8f8f8',
+    // backgroundColor: "white",
+    fontSize: 18,
+    padding: 8,
+    color: '#00C4EE',
     borderRadius: 20,
     paddingHorizontal: 10,
+  },
+  showStart: {
+    position: "absolute",
+    marginTop: 112,
+    // top: 0,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  showStartButton: {
+    backgroundColor: "#2196F3",
+    padding: 10,
+    borderRadius: 20
+  },
+  showStartButtonText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
   },
   gameWon: {
     position: "absolute",
@@ -216,22 +245,22 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5
   },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  textStyle: {
+  modalButtonText: {
     color: "white",
     fontWeight: "bold",
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: 18,
+    padding: 2,
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
-  }
-
+    textAlign: "center",
+    fontSize: 18,
+    letterSpacing: 1.1,
+  },
+  pointStarHolder: {
+    flexDirection: 'row',
+  },
 });
 
 export default SineScreen
