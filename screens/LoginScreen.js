@@ -14,9 +14,9 @@ const LoginScreen = ({ navigation }) => {
             >
             </LinearGradient>
                 <Image style={styles.logo} source={require('../media/logo.png')}/>
-                <Image source={require('../media/logoText.png')}/>
+                <Image source={require('../media/logo-text.png')}/>
                 <View style={styles.textHolder}>
-                    <Text style={styles.text}>sjdfhskfhjsdfbjsd dkjfhsdkjf djsfbksjdf</Text>
+                    <Text style={styles.text}>Interactive learning in a 3D environment</Text>
                 </View>
                 <Pressable style={styles.nextButton}>
                     <Text style={styles.buttonText} onPress={() => navigation.navigate('Overview')}>Let's Go!</Text>
