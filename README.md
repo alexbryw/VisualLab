@@ -3,6 +3,9 @@
 ### Made with React-Native EXPO for mobiles and uses THREE.JS (React-three-Fiber) for the 3D elements.   
 
 ![Onborading screenshot](https://github.com/alexbryw/VisualLab/blob/master/media/screenshots/onbording.png)
+![Onborading screenshot](https://github.com/alexbryw/VisualLab/blob/master/media/screenshots/categories.png)
+![Onborading screenshot](https://github.com/alexbryw/VisualLab/blob/master/media/screenshots/subject.png)
+![Onborading screenshot](https://github.com/alexbryw/VisualLab/blob/master/media/screenshots/content.png)
    
 ### Installation.   
 1. "npm install -g expo-cli"   
